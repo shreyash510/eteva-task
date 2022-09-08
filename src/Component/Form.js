@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 // import styled from "styled-components";
 
 const Form = () => {
-  // const libraryArr = [];
-  // console.log(libraryArr)
+
   const [data, setData] = useState({});
   const [library, setLibrary] = useState({
-    libraries : []
+    libraries: []
   });
 
   const inputEvent = (e) => {
-    // console.log(e.target.value)
     setData((pre) => {
       return {
         ...pre,
@@ -19,16 +17,22 @@ const Form = () => {
     });
   };
 
+
+  // const clearState = () => {
+  //   setState({ ...initialState });
+  // };
+
   const libraryData = (e) => {
-    // console.log(e.target.value)
     const { value, checked } = e.target;
     const { libraries } = library;
 
-    setLibrary({
-      libraries: [...libraries, value],
-    });
-  };
- 
+   if (checked === true) {
+      setLibrary({
+        libraries: [...libraries, value],
+      });
+    };
+  }
+
 
   const addTask = (e) => {
     e.preventDefault();
@@ -36,21 +40,19 @@ const Form = () => {
     console.log(library);
   };
 
- 
-
   return (
     <>
       <form
-        style={{ textAlign: "start" }}
+        style={{ textAlign: "start", width:"59%" }}
         className="border shadow rounded p-3 my-3"
       >
         <label htmlFor="date">Date : </label>
-        <input type="date" name="date" onChange={inputEvent} />
+        <input className="ms-2" type="date" name="date" onChange={inputEvent} />
         <br />
         <label className="mt-3" htmlFor="title">
           Task Title :{" "}
         </label>
-        <input type="text" name="title" onChange={inputEvent} />
+        <input className="ms-2" type="text" name="title" onChange={inputEvent} />
         <br />
         <label className="mt-3" htmlFor="date">
           Task Description :{" "}
@@ -58,15 +60,15 @@ const Form = () => {
         <textarea
           name="task_Description"
           rows="7"
-          cols="30"
-          className="align-top mt-3"
+          cols="37"
+          className="align-top mt-3 ms-2"
           onChange={inputEvent}
         ></textarea>
         <br />
         <label className="mt-3" htmlFor="ui-tech">
           UI Technology :{" "}
         </label>
-        <select name="UI_technology" onChange={inputEvent}>
+        <select className="ms-2" name="UI_technology" onChange={inputEvent}>
           <option value="No Select">Select</option>
           <option value="React">React</option>
           <option value="Angular">Angular</option>
@@ -79,6 +81,7 @@ const Form = () => {
         </label>
         <label htmlFor="html">Python</label> {" "}
         <input
+        className="ms-0"
           type="radio"
           name="backend"
           onChange={inputEvent}
@@ -97,6 +100,7 @@ const Form = () => {
           onChange={libraryData}
           // name="Libraries"
           value="Redux"
+          className="me-2"
         />
         <label htmlFor="vehicle1">Redux</label>
         <input
@@ -104,6 +108,7 @@ const Form = () => {
           onChange={libraryData}
           // name="Libraries"
           value="Saga"
+          className="me-2"
         />
         <label htmlFor="vehicle2"> Saga</label>
         <input
@@ -111,6 +116,7 @@ const Form = () => {
           onChange={libraryData}
           // name="Libraries"
           value="Numpy"
+          className="me-2"
         />
         <label htmlFor="vehicle3">Numpy</label>
         <input
@@ -118,12 +124,13 @@ const Form = () => {
           onChange={libraryData}
           // name="Libraries"
           value="Pandas"
+          className="me-2"
         />
         <label htmlFor="vehicle3">Pandas</label>
         <div className="mt-3">
-          <button onClick={addTask}>AddTask</button>
-          <button>Reset</button>
-          <button>Cancel</button>
+          <button className="btn btn-success me-2" onClick={addTask}>AddTask</button>
+          <button className="btn btn-secondary me-2">Reset</button>
+          <button className="btn btn-link border me-2">Cancel</button>
         </div>
       </form>
     </>
